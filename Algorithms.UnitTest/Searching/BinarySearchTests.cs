@@ -37,4 +37,15 @@ public class BinarySearchTests
         var actualIndex = binarySearch.SearchFirstOccurrence(input,searchEle);
         Assert.Equal(expectedIndex, actualIndex);
     }
+    
+    [Fact]
+    public void ShouldReturnLastOccurrenceOfElementGivenSortedArrayWithDuplicateElements()
+    {
+        List<int> input = new List<int> { 1, 2,3, 10, 10, 10, 10, 10 };
+        var expectedIndex = 7;
+        var searchEle = input[expectedIndex];
+        var binarySearch = new BinarySearch();
+        var actualIndex = binarySearch.SearchLastOccurrence(input,searchEle);
+        Assert.Equal(expectedIndex, actualIndex);
+    }
 }
