@@ -14,4 +14,15 @@ public class BinarySearchApplicationsTest
         var actual = binarySearchApplication.GetOccurrenceOfNumber(input, number);
         Assert.Equal(expected,actual);
     }
+
+    [Fact]
+    public void ShouldReturnIndexOfGivenNumberProvidedRotatedSortedArray()
+    {
+        var input = new List<int> { 15, 20, 21, 25,1, 2, 3, 4, 5, 6, 10 };
+        var expectedIndex = 1;
+        var number = input[expectedIndex];
+        var binarySearchApplication = new BinarySearchApplications();
+        var actual = binarySearchApplication.SearchInRotatedSortedArray(input, number);
+        Assert.Equal(expectedIndex,actual);
+    }
 }

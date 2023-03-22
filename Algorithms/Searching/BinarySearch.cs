@@ -1,12 +1,23 @@
 namespace Algorithms.Searching;
 
+#region Important Points On BinarySearch
+/*
+ 1. While thinking about BinarySearch , always think in way `which part of input can be rejected`
+   
+ 
+*/
+#endregion
 public class BinarySearch
 {
-    public int Search(List<int> input, int searchEle)
+    public int Search(List<int> input, int searchEle,int start = 0,int end = -1)
     {
         var index = -1;
         var low = 0;
         var high = input.Count() - 1;
+        if (start != 0)
+            low = start;
+        if (end != -1)
+            high = end;
         while (low < high)
         {
             var mid = low + (high - low) / 2;

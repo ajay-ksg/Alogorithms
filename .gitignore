@@ -20,8 +20,10 @@ build/
 bld/
 [Bb]in/
 [Oo]bj/
-bin
-obj
+Algorithms/bin
+Algorithms.UnitTest/bin
+Algorithms/obj
+Algorithms.UnitTest/obj
 # IntelliJ cache
 .idea/
 .DS_Store
