@@ -424,4 +424,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 Algorithms.sln.DotSettings.user
+Algorithms/bin
+Algorithms/obj
+.idea
 

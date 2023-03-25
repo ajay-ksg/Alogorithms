@@ -25,4 +25,15 @@ public class BinarySearchApplicationsTest
         var actual = binarySearchApplication.SearchInRotatedSortedArray(input, number);
         Assert.Equal(expectedIndex,actual);
     }
+    
+    [Fact]
+    public void ShouldReturnIndexOfTheNumberWhichHasExactOneOccurrenceProvidedSortedArrayHasEveryNumberIsPresentTwiceExpectOne()
+    {
+        var input = new List<int> { 1,1,2,3,3,4,4,5,5,6,6,7,7 };
+        var expectedIndex = 2;
+        var binarySearchApplication = new BinarySearchApplications();
+        var actual = binarySearchApplication.SearchNumberWithSingleOccurrence(input);
+        Assert.Equal(expectedIndex,actual);
+    }
+    
 }
