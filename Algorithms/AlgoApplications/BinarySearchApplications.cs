@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.InteropServices;
 using Algorithms.Searching;
 
 namespace Algorithms.AlgoApplications;
@@ -30,6 +31,7 @@ public class BinarySearchApplications
             pivot = i;
             break;
         }
+
         var index = _binarySearch.Search(input, number, 0, pivot - 1);
         return index == -1 ? _binarySearch.Search(input, number, pivot) : index;
     }
@@ -42,7 +44,7 @@ public class BinarySearchApplications
             return -1;
         while (low <= high)
         {
-            var mid = low + (high - low) / 2;
+            var mid = GetMid(low, high);
             if (mid == 0 && input[mid] != input[mid + 1])
                 return mid;
             if (mid == input.Count() - 1 && input[mid] != input[mid - 1])
@@ -52,7 +54,7 @@ public class BinarySearchApplications
 
             if (input[mid] != input[mid - 1])
             {
-                if ((mid - low) % 2 == 0)
+                if ((mid) % 2 == 0)
                     low = mid;
                 else
                 {
@@ -61,16 +63,46 @@ public class BinarySearchApplications
             }
             else
             {
-                if ((high - mid) % 2 != 0)
-                    low = mid + 1;
+                if ((mid) % 2 == 0)
+                    high = mid;
                 else
                 {
-                    high = mid;
+                    low = mid + 1;
                 }
             }
         }
 
         return -1;
     }
-    
+
+    private int GetMid(int low, int high)
+    {
+        return low + (high - low) / 2;
+    }
+
+    public int SearchDuplicatedNumberInSortedArrayHavingUniqueElementsFrom1ToNMinus1(List<int> input)
+    {
+        var low = 0;
+        var high = input.Count() - 1;
+        while (low < high)
+        {
+            var mid = GetMid(low, high);
+            if (mid == 0 && input[mid + 1] == input[mid])
+                return input[mid];
+            if (mid == input.Count() - 1 && input[mid - 1] == input[mid])
+                return input[mid];
+            if (input[mid] == input[mid - 1] || input[mid] == input[mid + 1])
+                return input[mid];
+
+
+            if (mid == input[mid])
+                high = mid;
+            else
+            {
+                low = mid+1;
+            }
+        }
+
+        return -1;
+    }
 }
