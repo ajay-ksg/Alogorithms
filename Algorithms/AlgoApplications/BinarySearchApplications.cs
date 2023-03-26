@@ -105,4 +105,48 @@ public class BinarySearchApplications
 
         return -1;
     }
+
+    /********** Approach **********
+     * 1. Minimum distance between two cows will be one as two cows cannot be on same stall.
+     * 2. Max possible distance between two cows given c cows to be placed will be (stalls[n-1]/c)+1.
+     * 3. Do binary search in the range of distance and find the max possible distance between two cows.
+     */
+    public int AggressiveCows(List<int> stalls, int numberOfCows)
+    {
+        var low = 1; //Minimum possible distance b/w two cows
+        var high = stalls[stalls.Count() - 1] / numberOfCows + 1; //Upper limit of max possible distance if stalls are placed uniformly
+        var ans = -1;
+        while (low <= high)
+        {
+            var mid = GetMid(low, high);
+            if (CanCowsPlacedAt(mid, stalls, numberOfCows))
+            {
+                ans = mid;
+                low = mid+1;
+            }
+            else
+            {
+                high = mid-1;
+            }
+            
+        }
+
+        return ans;
+    }
+
+    private bool CanCowsPlacedAt(int mid, List<int> stalls, int numberOfCows)
+    {
+        var cowsPlaced = 1;
+        var lastPlaceCowPos = stalls[0];
+        for (int i = 1; i < stalls.Count() && cowsPlaced <= numberOfCows; i++)
+        {
+            if ((stalls[i] - lastPlaceCowPos) >= mid)
+            {
+                cowsPlaced++;
+                lastPlaceCowPos = stalls[i];
+            }
+        }
+
+        return cowsPlaced >= numberOfCows;
+    }
 }

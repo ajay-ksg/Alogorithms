@@ -1,9 +1,18 @@
 using Algorithms.AlgoApplications;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel;
+using Xunit.Abstractions;
 
 namespace Algorithms.UnitTest.AlgoApplications;
 
 public class BinarySearchApplicationsTest
 {
+    private readonly ITestOutputHelper _testOutputHelper;
+
+    public BinarySearchApplicationsTest(ITestOutputHelper testOutputHelper)
+    {
+        _testOutputHelper = testOutputHelper;
+    }
+
     [Fact]
     public void ShouldReturnCountOfGivenNumberProvidedSortedArrayWithDuplicates()
     {
@@ -45,5 +54,26 @@ public class BinarySearchApplicationsTest
         var actual = binarySearchApplication.SearchDuplicatedNumberInSortedArrayHavingUniqueElementsFrom1ToNMinus1(input);
         Assert.Equal(expectedIndex,actual);
     }
-    
+
+    //Aggressive Cows
+    [Theory]
+    [MemberData(nameof(AggressiveCowTestCases))]
+    public void ShouldReturnTheMaxDistanceBetweenTwoClosestCowsGivenSortedArrayOfCowStallPositionsAndNumberOfCows
+        (string scenario, List<int> stalls,int numberOfCows,int expected)
+    {
+        _testOutputHelper.WriteLine($"Scenario : {scenario}");
+        var binarySearchApplication = new BinarySearchApplications();
+        var actual = binarySearchApplication.AggressiveCows(stalls, numberOfCows);
+        Assert.Equal(expected,actual);
+    }
+
+    private static IEnumerable<object[]> AggressiveCowTestCases()
+    {
+       return new List<object[]>
+        {
+            new object[] { "TestInputSet_1", new List<int> { 1, 2, 5, 7, 10 }, 3, 4 },
+            new object[] { "TestInputSet_2", new List<int> { 1, 2, 4, 8, 9 }, 3, 3 },
+
+        };
+    }
 }
