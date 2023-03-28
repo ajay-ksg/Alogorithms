@@ -149,4 +149,7 @@ public class BinarySearchApplications
 
         return cowsPlaced >= numberOfCows;
     }
+    
+    //ToDo: Q1. Given a number N return smallest possible value of K such that N base k can be represented as all 1's 
+    // Expected complexity: O((log N base 2)*(log N base 2))
 }
