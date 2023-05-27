@@ -24,6 +24,31 @@ public class RecursionApplicationTests
 
     }
 
+    [Theory]
+    [MemberData(nameof(PermutationWithUniqueCharInputs))]
+    public void ShouldReturnAllPermutationOfStringGivenAllCharacterAreUnique(string testCase,string input,List<string> expected)
+    {
+        _testOutputHelper.WriteLine($"Executing Testcase: {testCase} ");
+        var actual = new List<string>();
+        _recursion.GetStringPermutationHavingUniqueChars("",input,permutations: actual);
+        
+        actual.ForEach(x => Assert.Contains(x,expected));
+        Assert.Equal(expected.Count(),actual.Count());
+    }
+    
+    [Theory]
+    [MemberData(nameof(PermutationWithUniqueCharInputs))]
+    public void ShouldReturnAllUniquePermutationOfStringGivenStringCanContainsDuplicateChars(string testCase,string input,List<string> expected)
+    {
+        _testOutputHelper.WriteLine($"Executing Testcase: {testCase} ");
+        var actual = new List<string>();
+        _recursion.GetUniquePermutationOfStrHavingRepeatedChars("",input,actual);
+        
+        actual.ForEach(x => Assert.Contains(x,expected));
+        Assert.Equal(expected.Count(),actual.Count());
+    }
+
+    #region TestInputs
     private static IEnumerable<object[]> FibonacciTestInputs()
     {
         return new List<object[]>
@@ -35,4 +60,21 @@ public class RecursionApplicationTests
             new object[] { "InputSet 5", 10, 55 },
         };
     }
+
+    private static IEnumerable<object[]> PermutationWithUniqueCharInputs()
+    {
+        return new List<object[]>
+        {
+            new object[]{"TestCase1","abc",new List<string>{"abc", "acb", "bac", "bca", "cab", "cba"}},
+            new object[]{"TestCase2","ab",new List<string>{"ab", "ba"}},
+            new object[]{"TestCase3","abcd",new List<string>
+            {
+                "abcd", "abdc", "acbd", "acdb", "adbc", "adcb",
+                "bacd","badc", "bcad","bcda","bdac","bdca",
+                "cabd","cadb","cbad","cbda","cdab","cdba",
+                "dabc", "dacb", "dbac", "dbca", "dcab", "dcba"
+            }}
+        };
+    }
+    #endregion
 }
