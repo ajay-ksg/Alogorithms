@@ -48,6 +48,18 @@ public class RecursionApplicationTests
         Assert.Equal(expected.Count(),actual.Count());
     }
 
+    [Fact]
+    public void ShouldPrintAllSubsetOfAGivenArray()
+    {
+        List<int> input = new List<int>() { 1, 2 };
+        List<int> subset = new List<int>();
+        int prevIndex = -1;
+        int currIndex = 0;
+        var subsets = new List<List<int>>();
+        var x = _recursion.GetAllSubsetOfAnArray(input,subset,prevIndex,currIndex,subsets);
+        Assert.Equal(4,subsets.Count);
+    }
+
     #region TestInputs
     private static IEnumerable<object[]> FibonacciTestInputs()
     {

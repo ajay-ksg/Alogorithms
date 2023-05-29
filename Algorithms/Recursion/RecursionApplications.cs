@@ -79,4 +79,22 @@ public class RecursionApplications
 
         }
     }
+
+    public List<List<int>> GetAllSubsetOfAnArray(List<int> input, List<int> subset, int prevIndex, int currIndex, List<List<int> > subsets)
+    {
+        var x = new List<int> (subset);
+        subsets.Add(x);
+        
+        if(prevIndex >= currIndex ) return subsets;
+
+        for ( ; currIndex < input.Count; currIndex++)
+        {
+            subset.Add(input[currIndex]);
+            prevIndex = currIndex;
+            GetAllSubsetOfAnArray(input, subset, prevIndex, currIndex+1,subsets);
+            subset.RemoveAt(subset.Count - 1);
+        }
+
+        return subsets;
+    }
 }
