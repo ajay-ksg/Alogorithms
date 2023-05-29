@@ -11,4 +11,6 @@ All Subset: { [], [2], [3],[1],[2,3],[2,1],[3,1],[2,3,1] }
         fun(input,subsets,subset,prevIndex,currIndex+1);
         Remove last added element from subset.
                 
-         
+ Time Complexity: 
+    Total number of sunsets 2^N. SO time complexity is O(2^N)
+    Space Complexity: Max Stack depth : N      
