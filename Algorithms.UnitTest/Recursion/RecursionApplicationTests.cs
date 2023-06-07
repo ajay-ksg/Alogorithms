@@ -1,4 +1,5 @@
 using Algorithms.Recursion;
+using FluentAssertions;
 using Xunit.Abstractions;
 
 namespace Algorithms.UnitTest.Recursion;
@@ -60,7 +61,26 @@ public class RecursionApplicationTests
         Assert.Equal(4,subsets.Count);
     }
 
+    //https://www.geeksforgeeks.org/count-of-subsets-with-sum-equal-to-x/
+    [Theory]
+    [MemberData(nameof(SubsetWithSum_K_TestInputs))]
+    public void ShouldReturnNumberOfSubsetsWithSum_K_OfGivenArray(string testDescription, List<int> input, int sum, int expectedCount)
+    {
+        var actualCount = RecursionApplications.GetSubsetCountHavingSumK(input, sum, 0,0);
+        actualCount.Should().Be(expectedCount);
+    }
+
     #region TestInputs
+    
+    private static IEnumerable<object[]> SubsetWithSum_K_TestInputs()
+    {
+        return new List<object[]>
+        {
+            new object[] { "InputSet 1", new List<int>(){1,2,3,3}, 6,3 },
+            new object[] { "InputSet 2", new List<int>(){1,1,1,1}, 1, 4 },
+            new object[] { "InputSet 3",new List<int>(){1,2,3,4,5}, 9, 3 },
+        };
+    }
     private static IEnumerable<object[]> FibonacciTestInputs()
     {
         return new List<object[]>

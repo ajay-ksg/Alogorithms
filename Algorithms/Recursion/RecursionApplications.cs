@@ -97,4 +97,21 @@ public class RecursionApplications
 
         return subsets;
     }
+    
+    public static int GetSubsetCountHavingSumK(List<int> input, int sum, int currIndex, int currSum)
+    {
+        if (currSum == sum)
+            return 1;
+        if (currIndex == input.Count)
+            return 0;
+        
+        //Include curr ele
+        var count1 = GetSubsetCountHavingSumK(input, sum, currIndex + 1, currSum + input[currIndex]);
+        
+        //Exclude curr ele
+        var count2 = GetSubsetCountHavingSumK(input, sum, currIndex + 1, currSum);
+
+        return count1 + count2;
+
+    }
 }
