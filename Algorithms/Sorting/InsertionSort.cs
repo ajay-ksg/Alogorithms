@@ -1,14 +1,19 @@
+using System.Diagnostics;
+
 namespace Algorithms.Sorting;
 
 public class InsertionSort : ISort
 {
+    private Stopwatch timer = new Stopwatch();
     public List<int> Sort(List<int> input)
     {
+        timer.Start();
         for (var i = 1; i < input.Count; i++)
         {
             PutEleAtRightPlace(input, i);
         }
-
+        timer.Stop();
+        Console.WriteLine("Insertion Sort Time in ms :: "+ timer.ElapsedMilliseconds);
         return input;
     }
 

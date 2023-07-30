@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace Algorithms.Sorting;
 
 public interface ISort

@@ -1,9 +1,13 @@
+using System.Diagnostics;
+
 namespace Algorithms.Sorting;
 
 public class SelectionSort :ISort
 {
+    private Stopwatch timer = new Stopwatch();
     public List<int> Sort(List<int> input)
     {
+        timer.Start();
         for (var i = 0; i < input.Count; i++)
         {
             var minEleIndex = GetMinIndex(i, input);
@@ -13,6 +17,8 @@ public class SelectionSort :ISort
             input[minEleIndex] = input[minEleIndex] / input[i];
         }
 
+        timer.Stop();
+        Console.WriteLine("Selection Sort Time in ms :: "+ timer.ElapsedMilliseconds);
         return input;
     }
 
