@@ -1,5 +1,4 @@
 using Algorithms.AlgoApplications;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 using Xunit.Abstractions;
 
 namespace Algorithms.UnitTest.AlgoApplications;
